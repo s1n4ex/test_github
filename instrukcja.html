@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.16">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Vadym Masliuk">
+  <title>Korzystanie z Git w RStudio</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <script src="instrukcja_files/libs/clipboard/clipboard.min.js"></script>
+  <script src="instrukcja_files/libs/quarto-html/quarto.js"></script>
+  <script src="instrukcja_files/libs/quarto-html/popper.min.js"></script>
+  <script src="instrukcja_files/libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="instrukcja_files/libs/quarto-html/anchor.min.js"></script>
+  <link href="instrukcja_files/libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="instrukcja_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="instrukcja_files/libs/bootstrap/bootstrap.min.js"></script>
+  <link href="instrukcja_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="instrukcja_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="fullcontent">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7">Korzystanie z Git w RStudio</h1>
+<p class="author">Vadym Masliuk</p>
+</header>
+<section id="przygotowanie-do-połączenia-rstudio-z-git" class="level2">
+<h2 class="anchored" data-anchor-id="przygotowanie-do-połączenia-rstudio-z-git">Przygotowanie do połączenia Rstudio z Git</h2>
+<p>Przed przystąpieniem do połączenia Rstudio z Git należy wykonać następujące czynności:</p>
+<ol type="1">
+<li>Założ konto na stronie <a href="http://github.com" class="uri">http://github.com</a>.</li>
+<li>Zainstaluj i zaktualizuj R i Rstudio.</li>
+<li>Zainstaluj git ze strony <a href="http://gitforwindows.org" class="uri">http://gitforwindows.org</a>.</li>
+<li>Podaj nazwę użytkownika oraz e-mail który będzie rozpoznawany przez Git.</li>
+<li>Stwórz nowy repozytorium w GitHub</li>
+</ol>
+</section>
+<section id="ad-1." class="level2">
+<h2 class="anchored" data-anchor-id="ad-1.">Ad 1.</h2>
+<div id="fig-anonymous-12513" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><a href="http://github.com"><img src="figs/logowanie.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Strona tytułowa Git</figcaption><p></p>
+</figure>
+</div>
+<p>Wpisz swojego maila i kliknij <em>Sing up for GitHub</em>. Nadaj hasło (którego nie udostępniaj nikomu) i ciesz się z konta GitHub</p>
+</section>
+</main>
+<!-- /main column -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+</body></html>
